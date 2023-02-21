@@ -9,7 +9,7 @@ const Planes = () => {
     const darkMode = theme.state.darkMode;
 
   return (
-    <section>
+    <section id="planes">
          <h2 style={{color: darkMode && "#fff"}} className="section__title">Como ellos potenciá tu marketing digital con nuestros planes</h2>
                     <div className="products">
                     {Data &&

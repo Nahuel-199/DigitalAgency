@@ -12,7 +12,7 @@ const CardTestimonials = () => {
   const darkMode = theme.state.darkMode;
 
   return (
-    <section className='testimonial container section'>
+    <section className='testimonial container section' id="clientes">
         <h2 style={{color: darkMode && "#fff"}} className="section__title">Nuestros Clientes</h2>
         <span className="section__subtitle">Nuestros testimonios</span>
 

@@ -18,7 +18,7 @@
 }
 
 .footer__link:hover {
-    color: var(--title-color-dart);
+    color: var(--title-color-dark);
 }
 
 .footer__list {
@@ -56,6 +56,13 @@
 }
 
 @media screen and (max-width: 992px) {
+    .footer__list{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    }
+
    .footer__social-link {
     padding: 0.25rem;
     border-radius: 0.25rem;

@@ -24,11 +24,11 @@ const Contact = () => {
   return (
     <section className="contact section" id="contact">
       <h2 style={{color: darkMode && "#fff"}} className="section__title">Ponerse en contacto</h2>
-      <span className="section__subtitle">Contáctame</span>
+      <span className="section__subtitle">Contáctanos</span>
 
       <div className="contact__container container grid">
         <div className="contact_content">
-          <h3 style={{color: darkMode && "#fff"}} className="contact__title">Háblame</h3>
+          <h3 style={{color: darkMode && "#fff"}} className="contact__title">Háblenos</h3>
 
           <div className="contact__info">
             <div className="contact__card">
@@ -45,7 +45,7 @@ const Contact = () => {
               rel="noreferrer" 
               className="contact__button"
               >
-                Escríbeme{""}
+                Escríbenos{""}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
               </a>
             </div>
@@ -61,7 +61,7 @@ const Contact = () => {
               rel="noreferrer" 
               className="contact__button"
               >
-                Escríbeme{" "}
+                Escríbenos{" "}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
               </a>
             </div>
@@ -77,7 +77,7 @@ const Contact = () => {
               rel="noreferrer" 
               className="contact__button"
               >
-                Escríbeme{" "}
+                Escríbenos{" "}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
               </a>
             </div>

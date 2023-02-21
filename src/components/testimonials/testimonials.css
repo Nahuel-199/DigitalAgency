@@ -33,3 +33,10 @@
   color: #32dba0;
   font-size: 32px;
 }
+
+@media screen and (max-width: 768px) {
+
+  .top-test{
+    grid-template-columns: repeat(1, max-content);
+  }
+}
