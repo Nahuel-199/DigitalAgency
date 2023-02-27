@@ -1,49 +1,77 @@
-import React, { useRef, useContext } from 'react';
-import emailjs from '@emailjs/browser';
+import React, { useRef, useContext, useState } from "react";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import emailjs from "@emailjs/browser";
 import { ThemeContext } from "../../context";
+import { Country, State } from "country-state-city";
 import "./contact.css";
 
 const Contact = () => {
   const form = useRef();
   const theme = useContext(ThemeContext);
   const darkMode = theme.state.darkMode;
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [project, setProject] = useState("");
+  const [city, setCity] = useState("");
+  const [state, setState] = useState("");
+  const [country, setCountry] = useState("");
+  const [phoneNo, setPhoneNo] = useState("");
 
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs
-      .sendForm(
-        "service_mx18ogi",
-        "template_sgcf7pt",
-        form.current,
-        "user_Bjg02JRPajM33GafR7bct"
-      )
-      e.target.reset()
-  };
+    if (!name) {
+      const customId = "Llene todos los campos!";
 
+      toast("Llene todos los campos!",{
+        toastId: customId,
+        position: toast.POSITION.TOP_CENTER,
+      });
+    }
+    emailjs.sendForm(
+      "service_mx18ogi",
+      "template_sgcf7pt",
+      form.current,
+      "user_Bjg02JRPajM33GafR7bct"
+    );
+    toast.success("Formulario enviado correctamente 👍", {
+      position: toast.POSITION.BOTTOM_CENTER,
+    });
+    e.target.reset();
+  };
+  
   return (
     <section className="contact section" id="contact">
-      <h2 style={{color: darkMode && "#fff"}} className="section__title">Ponerse en contacto</h2>
+      <ToastContainer />
+      <h2 style={{ color: darkMode && "#fff" }} className="section__title">
+        Ponerse en contacto
+      </h2>
       <span className="section__subtitle">Contáctanos</span>
 
       <div className="contact__container container grid">
         <div className="contact_content">
-          <h3 style={{color: darkMode && "#fff"}} className="contact__title">Háblenos</h3>
+          <h3 style={{ color: darkMode && "#fff" }} className="contact__title">
+            Háblenos
+          </h3>
 
           <div className="contact__info">
             <div className="contact__card">
               <i className="bx bx-mail-send contact__card-icon"></i>
 
               <h3 className="contact__card-title">Email</h3>
-              <span style={{color: darkMode && "rgb(34, 34, 34)"}} className="contact__card-data">
+              <span
+                style={{ color: darkMode && "rgb(34, 34, 34)" }}
+                className="contact__card-data"
+              >
                 digitalagencyjg@gmail.com
               </span>
 
-              <a 
-              href="mailto:digitalagencyjg@gmail.com" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="contact__button"
+              <a
+                href="mailto:digitalagencyjg@gmail.com"
+                target="_blank"
+                rel="noreferrer"
+                className="contact__button"
               >
                 Escríbenos{""}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
@@ -54,12 +82,18 @@ const Contact = () => {
               <i className="bx bxl-whatsapp contact__card-icon"></i>
 
               <h3 className="contact__card-title">Whatsapp</h3>
-              <span style={{color: darkMode && "rgb(34, 34, 34)"}} className="contact__card-data">112335-9620</span>
+              <span
+                style={{ color: darkMode && "rgb(34, 34, 34)" }}
+                className="contact__card-data"
+              >
+                112335-9620
+              </span>
 
-              <a href="https://walink.co/332257" 
-              target="_blank" 
-              rel="noreferrer" 
-              className="contact__button"
+              <a
+                href="https://walink.co/332257"
+                target="_blank"
+                rel="noreferrer"
+                className="contact__button"
               >
                 Escríbenos{" "}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
@@ -70,12 +104,18 @@ const Contact = () => {
               <i className="bx bxl-discord-alt contact__card-icon"></i>
 
               <h3 className="contact__card-title">Discord</h3>
-              <span style={{color: darkMode && "rgb(34, 34, 34)"}} className="contact__card-data">digitalAgency</span>
+              <span
+                style={{ color: darkMode && "rgb(34, 34, 34)" }}
+                className="contact__card-data"
+              >
+                digitalAgency
+              </span>
 
-              <a href="https://discord.com/"  
-              target="_blank" 
-              rel="noreferrer" 
-              className="contact__button"
+              <a
+                href="https://discord.com/"
+                target="_blank"
+                rel="noreferrer"
+                className="contact__button"
               >
                 Escríbenos{" "}
                 <i className="bx bx-right-arrow-alt contact__button-icon"></i>
@@ -85,15 +125,26 @@ const Contact = () => {
         </div>
 
         <div className="contact__content">
-          <h3 style={{color: darkMode && "#fff"}} className="contact__title">Escríba su consulta</h3>
+          <h3 style={{ color: darkMode && "#fff" }} className="contact__title">
+            Escríba su consulta
+          </h3>
 
           <form ref={form} onSubmit={sendEmail} className="contact__form">
             <div className="contact__form-div">
-              <label style={{backgroundColor: darkMode && "rgb(34 34 34)"}} className="contact__form-tag">Nombre</label>
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                Nombre
+              </label>
               <input
-                style={{border: darkMode && " 2px solid rgb(255 255 255 / 79%)"}}
+                style={{
+                  border: darkMode && " 2px solid rgb(255 255 255 / 79%)",
+                }}
                 type="text"
                 name="name"
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 className="contact__form-input"
                 placeholder="Ponga su nombre"
                 required
@@ -101,22 +152,131 @@ const Contact = () => {
             </div>
 
             <div className="contact__form-div">
-              <label style={{backgroundColor: darkMode && "rgb(34 34 34)"}} className="contact__form-tag">Email</label>
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                Email
+              </label>
               <input
-               style={{border: darkMode && " 2px solid rgb(255 255 255 / 79%)"}}
+                style={{
+                  border: darkMode && " 2px solid rgb(255 255 255 / 79%)",
+                }}
                 type="email"
                 name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 className="contact__form-input"
                 placeholder="Ponga su email"
                 required
               />
             </div>
 
+            <div className="contact__form-div">
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                Telefono
+              </label>
+              <input
+                style={{
+                  border: darkMode && " 2px solid rgb(255 255 255 / 79%)",
+                }}
+                type="number"
+                name="phoneNo"
+                value={phoneNo}
+                onChange={(e) => setPhoneNo(e.target.value)}
+                className="contact__form-input"
+                placeholder="Ponga su número de telefono"
+                required
+              />
+            </div>
+
+            <div className="contact__form-div">
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                País
+              </label>
+              <select
+                required
+                name="country"
+                value={country}
+                onChange={(e) => setCountry(e.target.value)}
+                className="contact__form-select"
+              >
+                <option value="">Pais</option>
+                {Country &&
+                  Country.getAllCountries().map((item) => (
+                    <option key={item.isoCode} value={item.isoCode}>
+                      {item.name}
+                    </option>
+                  ))}
+              </select>
+            </div>
+            {country && (
+              <div className="contact__form-div">
+                <label
+                  style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                  className="contact__form-tag"
+                >
+                  Localidad
+                </label>
+                <select
+                  required
+                  name="state"
+                  value={state}
+                  onChange={(e) => setState(e.target.value)}
+                  className="contact__form-select"
+                >
+                  <option value="">Localidad</option>
+                  {State &&
+                    State.getStatesOfCountry(country).map((item) => (
+                      <option key={item.isoCode} value={item.isoCode}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            )}
+
+            <div className="contact__form-div">
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                Ciudad
+              </label>
+              <input
+                style={{
+                  border: darkMode && " 2px solid rgb(255 255 255 / 79%)",
+                }}
+                type="text"
+                name="city"
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                className="contact__form-input"
+                placeholder="Ponga su ciudad"
+                required
+              />
+            </div>
+
             <div className="contact__form-div contact__form-area">
-              <label style={{backgroundColor: darkMode && "rgb(34 34 34)"}} className="contact__form-tag">Consulta</label>
+              <label
+                style={{ backgroundColor: darkMode && "rgb(34 34 34)" }}
+                className="contact__form-tag"
+              >
+                Consulta
+              </label>
               <textarea
-               style={{border: darkMode && " 2px solid rgb(255 255 255 / 79%)"}}
+                style={{
+                  border: darkMode && " 2px solid rgb(255 255 255 / 79%)",
+                }}
                 name="project"
+                value={project}
+                onChange={(e) => setProject(e.target.value)}
                 cols="30"
                 rows="10"
                 className="contact__form-input"
@@ -126,7 +286,7 @@ const Contact = () => {
             </div>
 
             <button className="button button--flex">
-            Enviar mensaje
+              Enviar mensaje
               <svg
                 class="button__icon"
                 xmlns="http://www.w3.org/2000/svg"
